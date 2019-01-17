@@ -3,8 +3,8 @@ This project demonstrates NESTED LOOPS (i.e., loops within loops)
 in the context of TWO-DIMENSIONAL GRAPHICS.
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and ZHen Yang.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -55,6 +55,27 @@ def run_test_draw_L():
 
 
 def draw_L(window, circle, r, c):
+    x = circle.center.x
+    new_circle = rg.Circle(rg.Point(circle.centerx, circle.center.y), circle.radius)
+
+    for j in range(r):
+        circle.center.y = circle.center.y + circle.radius *2*j
+        if j == r - 4:
+            for k in range(c):
+                circle.center.x = circle.center.x + circle.radius * 2 * k
+                circle.attach_to(window)
+            circle.center.x = x
+
+
+        else:
+            for k in range(4):
+                circle.center.x = circle.center.x + circle.radius*2*k
+                circle.attach_to(window)
+            circle.center.x = x
+    window.render()
+
+
+
     """
     See   L.pdf   in this project for pictures that may
     help you better understand the following specification:
