@@ -55,25 +55,18 @@ def run_test_draw_L():
 
 
 def draw_L(window, circle, r, c):
-    x = circle.center.x
-    new_circle = rg.Circle(rg.Point(circle.centerx, circle.center.y), circle.radius)
-
-    for j in range(r):
-        circle.center.y = circle.center.y + circle.radius *2*j
-        if j == r - 4:
-            for k in range(c):
-                circle.center.x = circle.center.x + circle.radius * 2 * k
-                circle.attach_to(window)
-            circle.center.x = x
-
-
-        else:
-            for k in range(4):
-                circle.center.x = circle.center.x + circle.radius*2*k
-                circle.attach_to(window)
-            circle.center.x = x
-    window.render()
-
+    for k in range(r):
+        for j in range(3):
+            new=rg.Circle(rg.Point(circle.center.x+2*j*circle.radius, circle.center.y+2*k*circle.radius),circle.radius)
+            new.fill_color = circle.fill_color
+            new.attach_to(window)
+            window.render(0.1)
+    for k in range(3):
+        for j in range(c+3):
+            new = rg.Circle(rg.Point(circle.center.x+2*j*circle.radius, circle.center.y+2*(r+k)*circle.radius), circle.radius)
+            new.fill_color = circle.fill_color
+            new.attach_to(window)
+            window.render(0.1)
 
 
     """
@@ -101,7 +94,7 @@ def draw_L(window, circle, r, c):
     and m and n are small, positive integers.
     """
     # ------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #     The testing code is already written for you (above).
     # ------------------------------------------------------------------
 
@@ -124,6 +117,14 @@ def run_test_draw_wall_on_right():
 
 
 def draw_wall_on_right(rectangle, n, window):
+    dx = rectangle.corner_2.x-rectangle.corner_1.x
+    dy = rectangle.corner_2.y-rectangle.corner_1.y
+    for k in range(n):
+        for j in range(n):
+            if k>=j:
+                new = rg.Rectangle(rg.Point(rectangle.corner_1.x-j*dx, rectangle.corner_1.y+k*dy), rg.Point(rectangle.corner_2.x-j*dx,rectangle.corner_2.y+k*dy))
+                new.attach_to(window)
+                window.render(0.1)
     """
     See   Walls.pdf   in this project for pictures that may
     help you better understand the following specification:
@@ -142,7 +143,7 @@ def draw_wall_on_right(rectangle, n, window):
     and n is a small, positive integer.
     """
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #     The testing code is already written for you (above).
     # ------------------------------------------------------------------
 
